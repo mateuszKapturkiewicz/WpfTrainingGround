@@ -62,7 +62,7 @@
                 <controls:Gauge Width="400" Height="400" MaximumValue="{Binding ElementName=GaugeSlider, Path=Maximum}" 
                                 Value="{Binding ElementName=GaugeSlider, Path=Value}" Title="Success Precentage" Foreground="Wheat" FontSize="34" Padding="10"></controls:Gauge>
             </DockPanel>
-            <controls:GlowButton Content="Button" Width="300" Height="300" FontSize="24" />
+            <controls:GlowButton Content="Button" Width="300" Height="300" FontSize="24" GlowMode="FullCenterMovement" GlowColor="Violet" />
         </StackPanel>
     </DockPanel>
 </Window>
