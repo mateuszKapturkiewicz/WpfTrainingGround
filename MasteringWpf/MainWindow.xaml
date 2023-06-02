@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MasteringWpf"
         xmlns:controls="clr-namespace:MasteringWpf.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="800">
     <DockPanel Margin="25">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Width="100" Height="100" Style="{StaticResource GlowingButtonStyle}">
@@ -57,7 +57,12 @@
                 <Slider Grid.Row="1" Grid.Column="1" x:Name="GreenSlider" Maximum="200" Minimum="1" Value="15"/>
 
             </Grid>
-
+            <DockPanel>
+                <Slider x:Name="GaugeSlider" DockPanel.Dock="Top" Maximum="100" Minimum="0" Value="55"/>
+                <controls:Gauge Width="400" Height="400" MaximumValue="{Binding ElementName=GaugeSlider, Path=Maximum}" 
+                                Value="{Binding ElementName=GaugeSlider, Path=Value}" Title="Success Precentage" Foreground="Wheat" FontSize="34" Padding="10"></controls:Gauge>
+            </DockPanel>
+            <controls:GlowButton Content="Button" Width="300" Height="300" FontSize="24" />
         </StackPanel>
     </DockPanel>
 </Window>

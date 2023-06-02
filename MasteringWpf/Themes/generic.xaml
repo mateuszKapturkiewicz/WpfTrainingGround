@@ -39,4 +39,111 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+	<Style TargetType="{x:Type controls:Gauge}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type controls:Gauge}">
+					<Grid Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
+						<Grid Margin="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<TextBlock Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" />
+							<Canvas Grid.Row="1" Width="300" Height="150" HorizontalAlignment="Center" Margin="0,5">
+								<controls:Arc Width="300" Height="300" StrokeThickness="75" Stroke="#FF444444" />
+								<controls:Arc Width="300" Height="300" StrokeThickness="75" Stroke="OrangeRed" StartAngle="180" EndAngle="{Binding ValueAngle, RelativeSource={RelativeSource TemplatedParent}}" />
+								<Path Canvas.Left="150" Canvas.Top="140" Fill="White" StrokeThickness="5" Stroke="White" StrokeLineJoin="Round" Data="M0,0 L125,10, 0,20Z" Stretch="Fill" Width="125" Height="20">
+									<Path.RenderTransform>
+										<RotateTransform Angle="{Binding RotationAngle, RelativeSource={RelativeSource TemplatedParent}}" CenterX="0" CenterY="10" />
+									</Path.RenderTransform>
+								</Path>
+							</Canvas>
+							<TextBlock Grid.Row="2" Text="{Binding Value, StringFormat=N0, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" FontWeight="Bold" />
+						</Grid>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="{x:Type controls:GlowButton}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type controls:GlowButton}">
+					<Grid Name="PART_Root">
+						<Grid.Resources>
+							<RadialGradientBrush x:Key="GlowBrush" RadiusY="0.622" Center="0.5,0.848" GradientOrigin="0.5,0.818" RadiusX="1.5">
+								<RadialGradientBrush.RelativeTransform>
+									<ScaleTransform x:Name="ScaleTransform" CenterX="0.5" CenterY="0.5" ScaleX="1.0" ScaleY="1.8" />
+								</RadialGradientBrush.RelativeTransform>
+								<GradientStop Color="#B9F6F2FF" />
+								<GradientStop Color="#A9F4EFFF" Offset="0.099" />
+								<GradientStop Color="{Binding GlowColour}" Offset="0.608" />
+								<GradientStop Offset="1" Color="#004700FF" />
+							</RadialGradientBrush>
+							<RadialGradientBrush x:Key="LayeredButtonBackgroundBrush" RadiusX="1.85" RadiusY="0.796" Center="1.018,-0.115" GradientOrigin="0.65,-0.139">
+								<GradientStop Color="#FFCACACD" />
+								<GradientStop Color="#FF3B3D42" Offset="1" />
+							</RadialGradientBrush>
+							<LinearGradientBrush x:Key="LayeredButtonCurveBrush" StartPoint="0,0" EndPoint="1,1">
+								<GradientStop Color="#FF747475" Offset="0" />
+								<GradientStop Color="#FF3B3D42" Offset="1" />
+							</LinearGradientBrush>
+							<Grid x:Key="LayeredButtonBackgroundElements">
+								<Rectangle Fill="{StaticResource LayeredButtonBackgroundBrush}" />
+								<Path StrokeThickness="0" Fill="{StaticResource LayeredButtonCurveBrush}">
+									<Path.Data>
+										<CombinedGeometry GeometryCombineMode="Intersect">
+											<CombinedGeometry.Geometry1>
+												<EllipseGeometry Center="-20,50.7" RadiusX="185" RadiusY="46" />
+											</CombinedGeometry.Geometry1>
+											<CombinedGeometry.Geometry2>
+												<RectangleGeometry Rect="0,0,106,24" />
+											</CombinedGeometry.Geometry2>
+										</CombinedGeometry>
+									</Path.Data>
+								</Path>
+							</Grid>
+							<VisualBrush x:Key="LayeredButtonBackground" Visual="{StaticResource LayeredButtonBackgroundElements}" />
+						</Grid.Resources>
+						<Border CornerRadius="3" BorderBrush="#7F000000" BorderThickness="1" Background="#7FFFFFFF" SnapsToDevicePixels="True">
+							<Border CornerRadius="2" Margin="1" Background="{StaticResource LayeredButtonBackground}" SnapsToDevicePixels="True">
+								<Grid>
+									<Rectangle x:Name="Glow" IsHitTestVisible="False" RadiusX="2" RadiusY="2" Fill="{StaticResource GlowBrush}" Opacity="0" />
+									<ContentPresenter Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+								</Grid>
+							</Border>
+						</Border>
+						<Grid.Triggers>
+							<EventTrigger RoutedEvent="MouseEnter">
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="Glow" Storyboard.TargetProperty="Opacity" To="1.0" Duration="0:0:0.5" DecelerationRatio="1" />
+									</Storyboard>
+								</BeginStoryboard>
+							</EventTrigger>
+							<EventTrigger RoutedEvent="MouseLeave">
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="Glow" Storyboard.TargetProperty="Opacity" To="0.0" Duration="0:0:1" DecelerationRatio="1" />
+									</Storyboard>
+								</BeginStoryboard>
+							</EventTrigger>
+							<EventTrigger RoutedEvent="MouseDown">
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleX" From="10.0" To="1.0" Duration="0:0:0.15" AccelerationRatio="0.5" />
+										<DoubleAnimation Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleY" From="10.0" To="1.8" Duration="0:0:0.15" AccelerationRatio="0.5" />
+									</Storyboard>
+								</BeginStoryboard>
+							</EventTrigger>
+						</Grid.Triggers>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 </ResourceDictionary>
