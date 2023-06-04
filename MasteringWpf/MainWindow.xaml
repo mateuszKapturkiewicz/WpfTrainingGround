@@ -4,65 +4,89 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MasteringWpf"
+        xmlns:dataModels="clr-namespace:MasteringWpf.DataModels"
+        xmlns:vm="clr-namespace:MasteringWpf.ViewModels"
+        
         xmlns:controls="clr-namespace:MasteringWpf.Controls"
+        xmlns:views="clr-namespace:MasteringWpf.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="800">
-    <DockPanel Margin="25">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Width="100" Height="100" Style="{StaticResource GlowingButtonStyle}">
-                Content
-            </Button>
-            <Button Margin="5" Width="100" Height="100">
-                Content
-            </Button>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Name="TextBlock"  FontSize="40" FontWeight="Bold"
+        Title="Mastering Wpf" Height="800" Width="800">
+    <Window.Resources>
+        <vm:ProductViewModel x:Key="ProductViewModel"/>
+        <vm:ProductViewModelExtended x:Key="ProductViewModelExtended"/>
+        <vm:ProductNotifyViewModel x:Key="ProductNotifyViewModel"/>
+    </Window.Resources>
+    <DockPanel Margin="0,0,0,0">
+        <TabControl>
+            <TabItem Header="Customs controls">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Width="100" Height="100" Style="{StaticResource GlowingButtonStyle}">
+                        Content
+                    </Button>
+                    <Button Margin="5" Width="100" Height="100">
+                        Content
+                    </Button>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Name="TextBlock"  FontSize="40" FontWeight="Bold"
                            Text="Application Name">
-                    <TextBlock.Foreground>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                            <GradientStop Color="Orange" Offset="0"/>
-                            <GradientStop Color="Red" Offset="0.5"/>
-                            <GradientStop Color="Orange" Offset="1"/>
-                        </LinearGradientBrush>
-                    </TextBlock.Foreground>
-                </TextBlock>
-                <Rectangle Height="31" Margin="0,-11.6,0,0">
-                    <Rectangle.Fill>
-                        <VisualBrush Visual="{Binding ElementName=TextBlock}">
-                            <VisualBrush.RelativeTransform>
-                                <ScaleTransform ScaleY="-1.0" CenterX="0.5" CenterY="0.5"/>
-                            </VisualBrush.RelativeTransform>
-                        </VisualBrush>
-                    </Rectangle.Fill>
-                    <Rectangle.OpacityMask>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#DF000000"/>
-                            <GradientStop Color="Transparent" Offset="0.8"/>
-                        </LinearGradientBrush>
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-            </StackPanel>
-            <Grid TextElement.FontSize="28" TextElement.FontWeight="Bold" Margin="20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <controls:Sphere Color="Red" Value="{Binding ElementName=RedSlider, Path=Value}" VerticalAlignment="Bottom"/>
-                <controls:Sphere Grid.Column="1" Color="Green" Value="{Binding ElementName=GreenSlider, Path=Value}" VerticalAlignment="Bottom"/>
-                <Slider Grid.Row="1" x:Name="RedSlider" Maximum="200" Minimum="1" Value="15"/>
-                <Slider Grid.Row="1" Grid.Column="1" x:Name="GreenSlider" Maximum="200" Minimum="1" Value="15"/>
+                            <TextBlock.Foreground>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="Orange" Offset="0"/>
+                                    <GradientStop Color="Red" Offset="0.5"/>
+                                    <GradientStop Color="Orange" Offset="1"/>
+                                </LinearGradientBrush>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                        <Rectangle Height="31" Margin="0,-11.6,0,0">
+                            <Rectangle.Fill>
+                                <VisualBrush Visual="{Binding ElementName=TextBlock}">
+                                    <VisualBrush.RelativeTransform>
+                                        <ScaleTransform ScaleY="-1.0" CenterX="0.5" CenterY="0.5"/>
+                                    </VisualBrush.RelativeTransform>
+                                </VisualBrush>
+                            </Rectangle.Fill>
+                            <Rectangle.OpacityMask>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#DF000000"/>
+                                    <GradientStop Color="Transparent" Offset="0.8"/>
+                                </LinearGradientBrush>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </StackPanel>
+                    <controls:GlowButton Content="Button" Width="300" Height="300" FontSize="24" GlowMode="FullCenterMovement" GlowColor="Violet" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Customs controls 2">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid TextElement.FontSize="28" TextElement.FontWeight="Bold" Margin="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <controls:Sphere Color="Red" Value="{Binding ElementName=RedSlider, Path=Value}" VerticalAlignment="Bottom"/>
+                        <controls:Sphere Grid.Column="1" Color="Green" Value="{Binding ElementName=GreenSlider, Path=Value}" VerticalAlignment="Bottom"/>
+                        <Slider Grid.Row="1" x:Name="RedSlider" Maximum="200" Minimum="1" Value="15"/>
+                        <Slider Grid.Row="1" Grid.Column="1" x:Name="GreenSlider" Maximum="200" Minimum="1" Value="15"/>
 
-            </Grid>
-            <DockPanel>
-                <Slider x:Name="GaugeSlider" DockPanel.Dock="Top" Maximum="100" Minimum="0" Value="55"/>
-                <controls:Gauge Width="400" Height="400" MaximumValue="{Binding ElementName=GaugeSlider, Path=Maximum}" 
+                    </Grid>
+                    <DockPanel>
+                        <Slider x:Name="GaugeSlider" DockPanel.Dock="Top" Maximum="100" Minimum="0" Value="55"/>
+                        <controls:Gauge Width="400" Height="400" MaximumValue="{Binding ElementName=GaugeSlider, Path=Maximum}" 
                                 Value="{Binding ElementName=GaugeSlider, Path=Value}" Title="Success Precentage" Foreground="Wheat" FontSize="34" Padding="10"></controls:Gauge>
-            </DockPanel>
-            <controls:GlowButton Content="Button" Width="300" Height="300" FontSize="24" GlowMode="FullCenterMovement" GlowColor="Violet" />
-        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Data validation">
+                <StackPanel Orientation="Vertical">
+                    <views:ProductView DataContext="{StaticResource ProductViewModel}"></views:ProductView>
+                    <views:ProductViewExtended DataContext="{StaticResource ProductViewModelExtended}"></views:ProductViewExtended>
+                    <views:ProductNotifyView DataContext="{StaticResource ProductNotifyViewModel}"></views:ProductNotifyView>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </DockPanel>
 </Window>
