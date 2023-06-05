@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 
 namespace MasteringWpf.Extensions
@@ -21,6 +22,11 @@ namespace MasteringWpf.Extensions
         public static void AddRange<T>(this ICollection<T> collection, ICollection<T> range)
         {
             foreach (T item in range) collection.Add(item);
+        }
+
+        public static void Add<T>(this ICollection<T> collection, IEnumerable<T> range)
+        {
+            for (int index = 0; index < range.Count(); index++) collection.Add(range.ElementAt(index));
         }
     }
 }

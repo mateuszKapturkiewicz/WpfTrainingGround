@@ -67,6 +67,11 @@
             </Setter>
         </Style>
 
+        <TransformGroup x:Key="GlowTransformGroup">
+            <ScaleTransform CenterX="0.5" CenterY="0.85" ScaleX="1" ScaleY="1.8" />
+            <TranslateTransform Y="0.278" />
+        </TransformGroup>
+
 
         <Style TargetType="{x:Type Button}">
             <Setter Property="SnapsToDevicePixels" Value="True"/>

@@ -15,6 +15,7 @@
         <vm:ProductViewModel x:Key="ProductViewModel"/>
         <vm:ProductViewModelExtended x:Key="ProductViewModelExtended"/>
         <vm:ProductNotifyViewModel x:Key="ProductNotifyViewModel"/>
+        <vm:ProductNotifyViewModelExtended x:Key="ProductNotifyViewModelExtended"/>
     </Window.Resources>
     <DockPanel Margin="0,0,0,0">
         <TabControl>
@@ -85,6 +86,8 @@
                     <views:ProductView DataContext="{StaticResource ProductViewModel}"></views:ProductView>
                     <views:ProductViewExtended DataContext="{StaticResource ProductViewModelExtended}"></views:ProductViewExtended>
                     <views:ProductNotifyView DataContext="{StaticResource ProductNotifyViewModel}"></views:ProductNotifyView>
+                    <views:ProductNotifyViewExtended DataContext="{StaticResource ProductNotifyViewModelExtended}"></views:ProductNotifyViewExtended>
+
                 </StackPanel>
             </TabItem>
         </TabControl>
