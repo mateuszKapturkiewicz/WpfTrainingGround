@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using MasteringWpf.Managers;
+using MasteringWpf.Managers.Interfaces;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace MasteringWpf.ViewModels
@@ -39,7 +41,7 @@ namespace MasteringWpf.ViewModels
         /// </summary>
         //public IUiThreadManager UiThreadManager
         //{
-        //    get { return DependencyManager.Instance.Resolve<IUiThreadManager>(); }
+        //    //get { return DependencyManager.Instance.Resolve<IUiThreadManager>(); }
         //}
 
         /// <summary>
@@ -53,10 +55,10 @@ namespace MasteringWpf.ViewModels
         /// <summary>
         /// Gets the FeedbackManager object that is responsible for managing all user feedback in the application.
         /// </summary>
-        //public FeedbackManager FeedbackManager
-        //{
-        //    get { return FeedbackManager.Instance; }
-        //}
+        public FeedbackManager FeedbackManager
+        {
+            get { return FeedbackManager.Instance; }
+        }
 
         /// <summary>
         /// Gets or sets a value that specifies whether a particular control in the UI that has the FocusableTextBoxStyle applied to it is focused or not.

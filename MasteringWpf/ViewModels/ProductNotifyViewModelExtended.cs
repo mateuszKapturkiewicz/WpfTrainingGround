@@ -1,5 +1,6 @@
 ﻿using MasteringWpf.DataModels;
 using MasteringWpf.DataModels.Collections;
+using MasteringWpf.Managers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,7 @@ namespace MasteringWpf.ViewModels
             Products.CurrentItem = Products.Last();
             //Products.CurrentItem.Validate(nameof(Products.CurrentItem.Name), nameof(Products.CurrentItem.Price));
             ValidateUniqueName(Products.CurrentItem);
+
         }
 
         /// <summary>

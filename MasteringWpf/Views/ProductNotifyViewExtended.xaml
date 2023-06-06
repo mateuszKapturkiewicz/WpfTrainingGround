@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MasteringWpf.Views"
+             xmlns:attached="clr-namespace:MasteringWpf.Views.Attached"
              xmlns:converters="clr-namespace:MasteringWpf.Converters"
              xmlns:views="clr-namespace:MasteringWpf.Views"
              xmlns:dataModels="clr-namespace:MasteringWpf.DataModels"
-mc:Ignorable="d" d:DesignHeight="300" Width="600" FontSize="14">
+             mc:Ignorable="d" d:DesignHeight="300" Width="600" FontSize="14">
     <Grid Margin="20">
         <Grid.Resources>
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
@@ -153,6 +154,7 @@ mc:Ignorable="d" d:DesignHeight="300" Width="600" FontSize="14">
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -165,7 +167,7 @@ mc:Ignorable="d" d:DesignHeight="300" Width="600" FontSize="14">
                         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Products.CurrentItem.Name, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}" />
                         <TextBlock Grid.Row="2" Text="Price" Style="{StaticResource LabelStyle}" />
                         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Products.CurrentItem.Price, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}" />
-                        <!--<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Products.CurrentItem.Price, UpdateSourceTrigger=PropertyChanged, Delay=250}" Style="{StaticResource TextBoxStyle}" Attached:TextBoxProperties.IsNumericOnly="True" />-->
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Products.CurrentItem.Price, UpdateSourceTrigger=PropertyChanged, Delay=250}" Style="{StaticResource TextBoxStyle}" attached:TextBoxProperties.IsNumericOnly="True" />
                     </Grid>
                 </Grid>
             </Border>

@@ -5,6 +5,17 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
+        <!--Chapter 1-->
+        <Style x:Key="ImageInButtonStyle" TargetType="{x:Type Image}">
+            <Setter Property="Opacity" Value="1.0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, FallbackValue=False}" Value="False">
+                    <Setter Property="Opacity" Value="0.5" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+
         <RadialGradientBrush x:Key="LayeredButtonBackgroundBrush" RadiusX="1.85" RadiusY="0.796" Center="1.018,-0.115" GradientOrigin="0.65,-0.139">
             <GradientStop Color="#FFCACACD"/>
             <GradientStop Color="#FF3B3D42" Offset="1"/>

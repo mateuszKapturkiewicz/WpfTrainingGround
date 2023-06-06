@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:MasteringWpf"
         xmlns:dataModels="clr-namespace:MasteringWpf.DataModels"
         xmlns:vm="clr-namespace:MasteringWpf.ViewModels"
+        xmlns:control="clr-namespace:MasteringWpf.Views.Controls"
         
         xmlns:controls="clr-namespace:MasteringWpf.Controls"
         xmlns:views="clr-namespace:MasteringWpf.Views"
@@ -89,6 +90,9 @@
                     <views:ProductNotifyViewExtended DataContext="{StaticResource ProductNotifyViewModelExtended}"></views:ProductNotifyViewExtended>
 
                 </StackPanel>
+            </TabItem>
+            <TabItem Header="Experience">
+                <control:FeedbackControl/>
             </TabItem>
         </TabControl>
     </DockPanel>
