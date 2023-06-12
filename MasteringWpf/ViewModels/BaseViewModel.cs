@@ -1,5 +1,11 @@
-﻿using MasteringWpf.Managers;
+﻿using MasteringWpf.DataModels;
+using MasteringWpf.DataModels.Collections;
+using MasteringWpf.DataModels.Interfaces;
+using MasteringWpf.Managers;
 using MasteringWpf.Managers.Interfaces;
+using MasteringWpf.Models.DataControllers;
+using MasteringWpf.Models.Interfaces;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -31,10 +37,10 @@ namespace MasteringWpf.ViewModels
         /// <summary>
         /// Provides access to the application data source.
         /// </summary>
-        //protected DataController Model
-        //{
-        //    get { return new DataController(DependencyManager.Instance.Resolve<IDataProvider>(), new DataOperationManager(UiThreadManager), StateManager.CurrentUser); }
-        //}
+        protected DataController Model
+        {
+            get { return new DataController(DependencyManager.Instance.Resolve<IDataProvider>(), new DataOperationManager(UiThreadManager), StateManager.CurrentUser); }
+        }
 
         /// <summary>
         /// Gets the IUiThreadManager object that is responsible for managing UI access to asynchronous data in the application.
@@ -47,10 +53,10 @@ namespace MasteringWpf.ViewModels
         /// <summary>
         /// Gets the StateManager object that is responsible for maintaining global state in the application.
         /// </summary>
-        //public StateManager StateManager
-        //{
-        //    get { return StateManager.Instance; }
-        //}
+        public StateManager StateManager
+        {
+            get { return StateManager.Instance; }
+        }
 
         /// <summary>
         /// Gets the FeedbackManager object that is responsible for managing all user feedback in the application.
@@ -76,15 +82,15 @@ namespace MasteringWpf.ViewModels
         /// <typeparam name="T">The type of the item specified by the item input parameter and the items inside the collection specified by the collection input parameter. This must either be or extend a BaseSynchronizableDataModel of type T.</typeparam>
         /// <param name="collection">The collection to add the new item to.</param>
         /// <returns>The new item that was added to the collection specified by the collection input parameter.</returns>
-        //public T AddNewDataTypeToCollection<S, T>(S collection) where S : BaseSynchronizableCollection<T> where T : BaseSynchronizableDataModel<T>, new()
-        //{
-        //    T item = collection.GetNewItem();
-        //    if (item is IAuditable) ((IAuditable)item).Auditable.CreatedOn = DateTime.Now;
-        //    item.Synchronize();
-        //    collection.Add(item);
-        //    collection.CurrentItem = item;
-        //    return item;
-        //}
+        public T AddNewDataTypeToCollection<S, T>(S collection) where S : BaseSynchronizableCollection<T> where T : BaseSynchronizableDataModel<T>, new()
+        {
+            T item = collection.GetNewItem();
+            if (item is IAuditable) ((IAuditable)item).Auditable.CreatedOn = DateTime.Now;
+            item.Synchronize();
+            collection.Add(item);
+            collection.CurrentItem = item;
+            return item;
+        }
 
         /// <summary>
         /// Inserts a new item to the collection specified by the collection input parameter at the index specified by the index input parameter and sets the BaseCollection.CurrentItem property to this item.
@@ -94,15 +100,15 @@ namespace MasteringWpf.ViewModels
         /// <param name="index">The index in the collection in which to insert the new item.</param>
         /// <param name="collection">The collection to add the new item to.</param>
         /// <returns>The new item that was added to the collection specified by the collection input parameter.</returns>
-        //public T InsertNewDataTypeToCollection<S, T>(int index, S collection) where S : BaseSynchronizableCollection<T> where T : BaseSynchronizableDataModel<T>, new()
-        //{
-        //    T item = collection.GetNewItem();
-        //    if (item is IAuditable) ((IAuditable)item).Auditable.CreatedOn = DateTime.Now;
-        //    item.Synchronize();
-        //    collection.Insert(index, item);
-        //    collection.CurrentItem = item;
-        //    return item;
-        //}
+        public T InsertNewDataTypeToCollection<S, T>(int index, S collection) where S : BaseSynchronizableCollection<T> where T : BaseSynchronizableDataModel<T>, new()
+        {
+            T item = collection.GetNewItem();
+            if (item is IAuditable) ((IAuditable)item).Auditable.CreatedOn = DateTime.Now;
+            item.Synchronize();
+            collection.Insert(index, item);
+            collection.CurrentItem = item;
+            return item;
+        }
 
         /// <summary>
         /// Removes the item specified by the item input parameter from the collection specified by the collection input parameter and sets the BaseCollection.CurrentItem to the previous or next item in the collection if possible.
@@ -111,14 +117,14 @@ namespace MasteringWpf.ViewModels
         /// <typeparam name="T">The type of the item specified by the item input parameter and the items inside the collection specified by the collection input parameter. This must either be or extend a BaseSynchronizableDataModel of type T.</typeparam>
         /// <param name="collection">The collection to remove the item specified by the item input parameter from.</param>
         /// <param name="item">The item to remove from the collection specified by the collection input parameter.</param>
-        //public void RemoveDataTypeFromCollection<S, T>(S collection, T item) where S : BaseSynchronizableCollection<T> where T : BaseSynchronizableDataModel<T>, new()
-        //{
-        //    int index = collection.IndexOf(item);
-        //    collection.RemoveAt(index);
-        //    if (index > collection.Count) index = collection.Count;
-        //    else if (index < 0) index++;
-        //    if (index > 0 && index < collection.Count && collection.CurrentItem != collection[index]) collection.CurrentItem = collection[index];
-        //}
+        public void RemoveDataTypeFromCollection<S, T>(S collection, T item) where S : BaseSynchronizableCollection<T> where T : BaseSynchronizableDataModel<T>, new()
+        {
+            int index = collection.IndexOf(item);
+            collection.RemoveAt(index);
+            if (index > collection.Count) index = collection.Count;
+            else if (index < 0) index++;
+            if (index > 0 && index < collection.Count && collection.CurrentItem != collection[index]) collection.CurrentItem = collection[index];
+        }
 
         #region INotifyPropertyChanged Members
 
