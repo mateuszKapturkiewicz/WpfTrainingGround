@@ -2,8 +2,8 @@
 {
     public enum ValidationLevel
     {
-        None = 0,
-        Partial = 1,
-        Full = 2
+        None,
+        Partial,
+        Full
     }
 }

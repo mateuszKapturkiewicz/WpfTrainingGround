@@ -15,7 +15,7 @@ namespace MasteringWpf.ViewModels
         /// </summary>
         public BaseViewModel()
         {
-            //if (FeedbackManager.UiThreadManager == null) FeedbackManager.UiThreadManager = UiThreadManager;
+            if (FeedbackManager.UiThreadManager == null) FeedbackManager.UiThreadManager = UiThreadManager;
         }
 
         /// <summary>
@@ -39,10 +39,10 @@ namespace MasteringWpf.ViewModels
         /// <summary>
         /// Gets the IUiThreadManager object that is responsible for managing UI access to asynchronous data in the application.
         /// </summary>
-        //public IUiThreadManager UiThreadManager
-        //{
-        //    //get { return DependencyManager.Instance.Resolve<IUiThreadManager>(); }
-        //}
+        public IUiThreadManager UiThreadManager
+        {
+           get { return DependencyManager.Instance.Resolve<IUiThreadManager>(); }
+        }
 
         /// <summary>
         /// Gets the StateManager object that is responsible for maintaining global state in the application.
