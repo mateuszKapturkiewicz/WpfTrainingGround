@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MasteringWpf.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,16 @@ namespace MasteringWpf
             InitializeComponent();
             Loaded += MainWindow_Loaded;
             Closed += MainWindow_Closed;
+
+            CustomWindow customWindow = new CustomWindow();
+            customWindow.Width = 225;
+            customWindow.Height = 120;
+            customWindow.FontSize = 18;
+            customWindow.Padding = new Thickness(20);
+            customWindow.Content = "Please see this message!";
+            customWindow.Show();
+
+            int renderingTier = RenderCapability.Tier >> 16;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -45,17 +56,5 @@ namespace MasteringWpf
         }
 
 
-        public MainWindow()
-        {
-            InitializeComponent();
-
-            CustomWindow customWindow = new CustomWindow();
-            customWindow.Width = 225;
-            customWindow.Height = 120;
-            customWindow.FontSize = 18;
-            customWindow.Padding = new Thickness(20);
-            customWindow.Content = "Please see this message!";
-            customWindow.Show();
-        }
     }
 }

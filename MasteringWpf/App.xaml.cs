@@ -7,6 +7,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using MasteringWpf.DataModels.Enums;
+using System.Windows.Media;
 
 namespace MasteringWpf
 {
@@ -17,6 +19,7 @@ namespace MasteringWpf
     {
         public App()
         {
+            StateManager.Instance.RenderingTier = (RenderingTier)(RenderCapability.Tier >> 16);
             RegisterDependencies();
         }
 

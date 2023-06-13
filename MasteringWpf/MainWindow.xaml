@@ -92,7 +92,10 @@
                 </StackPanel>
             </TabItem>
             <TabItem Header="Experience">
-                <control:FeedbackControl/>
+                <control:FeedbackControl />
+            </TabItem>
+            <TabItem Header="Performance">
+                <views:DrawingView />
             </TabItem>
         </TabControl>
     </DockPanel>
